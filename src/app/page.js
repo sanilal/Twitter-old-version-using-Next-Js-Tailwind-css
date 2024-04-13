@@ -1,6 +1,7 @@
 import React from 'react'
 import SideBar from './components/SideBar'
 import Feed from './components/Feed'
+import Widgets from './components/Widgets'
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <Feed />  
 
       {/* Widgets */}
+      <Widgets /> 
 
       {/* Models */}
     </main>
