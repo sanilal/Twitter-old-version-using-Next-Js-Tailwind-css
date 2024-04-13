@@ -1,5 +1,6 @@
 import React from 'react'
 import SideBar from './components/SideBar'
+import Feed from './components/Feed'
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <SideBar />
 
       {/* Feeds */}
+      <Feed />  
 
       {/* Widgets */}
 
