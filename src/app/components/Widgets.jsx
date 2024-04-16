@@ -5,6 +5,7 @@ import NewsResults from "./NewsResults";
 
 export default function Widgets() {
   const [newsResponses, setNewsResponses] = useState(null);
+  const [randomUsers, setRandomUsers] = useState(null)
 
   useEffect(() => {
     async function getNews() {
@@ -16,7 +17,7 @@ export default function Widgets() {
           throw new Error("Failed to fetch data");
         }
         const data = await res.json();
-        console.log(data);
+       // console.log(data);
         setNewsResponses(data);
       } catch (error) {
         console.error("Error fetching news data:", error);
@@ -25,6 +26,23 @@ export default function Widgets() {
 
     getNews();
   }, []); // Run only once when the component mounts
+
+  useEffect(()=>{
+    async function getUsers(){
+      try {
+        const res = await fetch("https://randomuser.me/api/?results=50&inc=name,login,picture");
+        if (!res.ok) {
+          throw new Error('Could not retrieve users');
+        }
+        const data = await res.json();
+       // console.log(data);
+       setRandomUsers(data)
+      } catch (error) {
+        console.error('Error getting random user data', error);
+      }
+    }
+    getUsers();
+  }, [])
 
  // console.log("News results in Widgets:", newsResponses?.articles);// Check if newsResponses is defined
 
@@ -40,7 +58,7 @@ export default function Widgets() {
           />
         </div>
 
-        {newsResponses && <NewsResults newsResponses={newsResponses} />}{" "}
+        {newsResponses && <NewsResults newsResponses={newsResponses} randomUsers={randomUsers}  />}{" "}
         {/* Render NewsResults only if newsResults is defined */}
       </div>
     </div>
